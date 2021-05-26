@@ -16,7 +16,7 @@ def rockPaperScissors():
 
     if userInput != "Paper" and userInput != "Rock" and userInput != "Scissors":
         print("Please put correct input!")
-    elif (userInput == botNumber):
+    elif userInput == botNumber:
         print("It's a tie!")
     elif (userInput == "Rock" and botNumber == "Paper") or (userInput == "Paper" and botNumber == "Scissors") or (userInput == "Scissors" or botNumber == "Rock"):
         print("You lost! Bot played "+botNumber)
