@@ -1,3 +1,3 @@
 # Description
 
-## A console rock paper scissors built in python. 
+### Library of school python projects.
