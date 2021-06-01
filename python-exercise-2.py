@@ -55,10 +55,10 @@ def email_template(address, name):
 
 email_template("mynamesjeff@iamgay.com", "Jeff")
 #exercise 4b
-address = input("Enter email: ")
-name = input("Enter name: ")
+uAddress = input("Enter email: ")
+uName = input("Enter name: ")
 
-email_template(address, name)
+email_template(uAddress, uName)
 
 #exercise 5a
 def print_timetable(x): #where x is the number to print for the timetable
