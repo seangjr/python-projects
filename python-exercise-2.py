@@ -4,7 +4,7 @@ def printHex():
     for x in range(5):
         print(6 * "#")
 
-printHex()
+printHex() # <---- this is the only thing u need to write :D for exercise 1
 
 #exercise 2a
 def smaller_num(num1, num2):
