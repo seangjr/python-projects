@@ -1,5 +1,6 @@
-first_num = [8, 2, 4, 5, 5, 5]
+first_num = [8, 2, 4, 5, 5, 5, 9, 0]
 second_num = [4, 5, 6, 5, 5, 5]
+
 
 def add_big(first_num, second_num):
     # resultant list
@@ -33,5 +34,6 @@ def add_big(first_num, second_num):
             result[j-1] += 1
     result = [int(x) for z in result for x in str(z)]
     return result
+
 
 print(add_big(first_num, second_num))
