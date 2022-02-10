@@ -6,6 +6,3 @@ def bubble_sort(arr):
         for i in range(n):
             if arr[i] > arr[i+1]:
                 arr[i], arr[i+1] = arr[i+1], arr[i]
-
-bubble_sort(arr)
-print(arr)
