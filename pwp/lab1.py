@@ -22,11 +22,16 @@ def swap():
 def arithmetic():
     x = int(input("Enter the first number:"))
     y = int(input("Enter the second number:"))
-    print("The sum of the two numbers is:", x + y)
-    print("The difference of the two numbers is:", x - y)
-    print("The product of the two numbers is:", x * y)
-    print("The quotient of the two numbers is:", x / y)
-    print("The remainder of the two numbers is:", x % y)
+    addition = x + y
+    subtraction = x - y
+    multiplication = x * y
+    division = x / y
+    remainder = x % y
+    print(f"Addition is {addition}")
+    print(f"Subtraction is {subtraction}")
+    print(f"Multiplication is {multiplication}")
+    print(f"Division is {division}")
+    print(f"Remainder is {remainder}")
 
 def circlearea(radius):
     area = 3.14159 * radius ** 2
