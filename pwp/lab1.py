@@ -33,13 +33,13 @@ def arithmetic():
     print(f"Division is {division}")
     print(f"Remainder is {remainder}")
 
-def circlearea(radius):
-    area = 3.14159 * radius ** 2
-    print(area)
-
-def circlecircumference(radius):
-    circumference = 2 * 3.14159 * radius
-    print(circumference)
+def circleareaandcircumference():
+    radius = int(input("Enter radius: "))
+    pi = 3.14159
+    area = pi * radius ** 2
+    circumference = 2 * pi * radius
+    print(f"Area of circle is {area}")
+    print(f"Circumference of circle is {circumference}")
 
 def studentgrade():
     score_dictionary = {}
