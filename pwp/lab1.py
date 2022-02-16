@@ -22,20 +22,11 @@ def swap():
 def arithmetic():
     x = int(input("Enter the first number:"))
     y = int(input("Enter the second number:"))
-    operator = input("Enter the operator: ")
-    if operator == "+":
-        print(x+y)
-    elif operator == "-":
-        print(x-y)
-    elif operator == "*":
-        print(x*y)
-    elif operator == "/":
-        print(x/y)
-    elif operator == "%":
-        print(x%y)
-    else:
-        print("Enter a valid operator!")
-        arithmetic()
+    print("The sum of the two numbers is:", x + y)
+    print("The difference of the two numbers is:", x - y)
+    print("The product of the two numbers is:", x * y)
+    print("The quotient of the two numbers is:", x / y)
+    print("The remainder of the two numbers is:", x % y)
 
 def circlearea(radius):
     area = 3.14159 * radius ** 2
