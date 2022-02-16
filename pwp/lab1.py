@@ -13,6 +13,12 @@ def addition():
     y = int(input("Enter the second number: "))
     print(x + y)
 
+def swap():
+    x = int(input("Enter first number: "))
+    y = int(input("Enter the second number: "))
+    print("The first number is ", y)
+    print("The second number is ", x)
+
 def arithmetic():
     x = int(input("Enter the first number:"))
     y = int(input("Enter the second number:"))
@@ -54,14 +60,3 @@ def employeesalary():
     HRA = basic * 0.2
     salary = grade_pay + DA + TA + HRA
     print(f"Employee salary is {salary}")
-
-def main():
-    printhello()
-    userdisplaynumber()
-    addition()
-    arithmetic()
-    radius = int(input("Enter the radius of the circle: "))
-    circlearea(radius)
-    circlecircumference(radius)
-    studentgrade()
-    employeesalary()
