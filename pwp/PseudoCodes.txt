@@ -1,0 +1,262 @@
+#!/usr/bin/python
+
+Lab 1
+PROGRAM printhello
+BEGIN
+  	PRINT(“Hello World!”)
+END
+
+PROGRAM displaynumber
+BEGIN
+  	DECLARE number as INTEGER
+  	number = 1
+  	PRINT(number)
+END
+
+PROGRAM userdisplaynumber
+BEGIN
+  	DECLARE number as INTEGER
+  	PRINT(“Enter number: “)
+  	GET number
+  	PRINT(number)
+END
+
+PROGRAM addition
+BEGIN
+	DECLARE x, y as INTEGER
+  	PRINT(“Enter first number: “, x)
+  	GET x
+  	PRINT(“Enter second number: “, y)
+  	GET y
+  	PRINT(x+y)
+END
+
+PROGRAM swap
+BEGIN
+	DECLARE x, y, temp as INTEGER
+	PRINT(“Enter first number: “, x)
+	GET x
+PRINT(“Enter second number: “, y)
+	GET y
+	PRINT(“The first number is ”, y)
+PRINT(“The first number is “, x) 
+END
+
+PROGRAM arithmetic
+BEGIN
+	DECLARE x, y as INTEGER
+	DECLARE operator as STRING
+PRINT(“Enter first number: “, x)
+	GET x
+PRINT(“Enter first number: “, y)
+GET y
+PRINT(“addition is: “, x+y)
+PRINT(“subtraction is: “,x-y)
+PRINT(“multiplication is: “,x*y)
+PRINT(“division is: “, x/y)
+PRINT(“modulus is: “, x%y)
+END
+
+PROGRAM circlearea
+BEGIN
+	DECLARE radius, pi, area as FLOAT
+	pi = 3.14159
+	PRINT(“Enter circle radius: “, radius)
+	GET radius
+	area = pi * radius ** 2
+	PRINT(“Area of circle is: “, area)
+END
+
+PROGRAM circumference
+BEGIN
+	DECLARE radius, pi, circumference as FLOAT
+	pi = 3.14159
+	PRINT(“Enter circle radius: “, radius)
+	GET radius
+	circumference = 2 * pi * radius
+	PRINT(“Circle circumference is: “, circumference)
+END
+
+PROGRAM studentgrade
+BEGIN
+DECLARE grade1, grade2, grade3, grade4, grade5, average as FLOAT
+	PRINT(“Enter grade 1: “, grade1)
+	GET grade1
+	PRINT(“Enter grade 2: “, grade2)
+	GET grade2
+	PRINT(“Enter grade 3: “,grade3)
+	GET grade3
+	PRINT(“Enter grade 4: “, grade4)
+	GET grade4
+	PRINT(“Enter grade 5: “, grade5)
+	GET grade5
+PRINT(“The average is: “, (grade1 + grade2 + grade3 + grade4 +
+grade5) / 2)
+END
+
+PROGRAM employeesalary
+BEGIN
+	DECLARE basic, grade_pay, DA, TA, HRA, salary as FLOAT
+	PRINT(“Enter base salary: “, basic)
+	GET basic
+	grade_pay = basic * 2
+	DA = basic * 0.7
+	TA = 200
+	HRA = basic * 0.2
+	salary = grade_pay + DA + TA + HRA
+	PRINT(“Employee salary is: “, salary)
+END
+Lab 2
+PROGRAM evenorodd
+BEGIN
+	DECLARE number as INTEGER
+	number = 2
+	IF (number % 2 == 0) THEN
+PRINT(“Number is even”)
+	ELSE 
+PRINT(“Number is odd”)
+	ENDIF
+END
+
+PROGRAM checkleapyear
+BEGIN
+	DECLARE year as INTEGER
+	GET year
+	IF (year % 400 == 0) OR (year % 4 == 0 and year % 100 != 0) THEN
+		PRINT(year, “ is a leap year”)
+	ELSE
+		PRINT(year, “ is not a leap year”)
+	ENDIF
+END
+
+PROGRAM findlargestnumber
+BEGIN
+	DECLARE number1, number2 as INTEGER
+	number1 = 0
+	number2 = 1
+	IF number1 > number2 THEN
+		PRINT(number1, “ is larger than “, number2)
+	ELSE
+		PRINT(number2, “ is larger than “, number2)
+	ENDIF
+END
+
+PROGRAM checknumbersign
+BEGIN
+	DECLARE number as INTEGER
+	number = 1
+	IF number > 0 THEN PRINT(“Number is positive”)
+	ELSE IF number == 0 THEN PRINT(“Number is 0”)
+	ELSE
+		PRINT(“Number is negative”)
+END
+
+PROGRAM checkstudentgrade
+BEGIN
+	DECLARE grade1, grade2, grade3, grade4, grade5, total as INTEGER
+	DECLARE studentname, tpnumber as STRING
+	DECLARE percentage as FLOAT
+	PRINT(“Enter student name: “, studentname)
+	GET studentname
+	PRINT(“Enter TP Number: “, tpnumber)
+	GET tpnumber
+	
+	PRINT(“Enter first grade: “, grade1)
+	GET grade1
+	PRINT(“Enter second grade: “, grade2)
+	GET grade2
+	PRINT(“Enter third grade: “, grade3)
+	GET grade3
+	PRINT(“Enter fourth grade: “, grade4)
+	GET grade4
+	PRINT(“Enter fifth grade: “, grade5)
+	GET grade5
+		
+	total = grade1 + grade2 + grade3 + grade4 + grade5
+	percentage = total / 5
+
+	PRINT(“Student Name: “, studentname)
+	PRINT(“TP Number: “, tpnumber)
+	PRINT("Percentage: ", percentage, "%")
+
+	IF percentage >= 81 and percentage <= 100 THEN PRINT(“Grade is A+”)
+	ELSE IF percentage >= 76 and percentage <= 80 THEN PRINT(“Grade is A”)
+	ELSE IF percentage >= 71 and percentage <= 75 THEN PRINT(“Grade is B+”)
+	ELSE IF percentage >= 66 and percentage <= 70 THEN PRINT(“Grade is B”)
+	ELSE IF percentage >= 61 and percentage <= 65 THEN PRINT(“Grade is C+”)
+	ELSE IF percentage >= 56 and percentage <= 60 THEN PRINT(“Grade is C”)
+	ELSE IF percentage >= 51 and percentage <= 55 THEN PRINT(“Grade is C-”)
+	ELSE
+		PRINT(“Grade is D”)
+END
+
+PROGRAM tax
+BEGIN
+  	DECLARE customerName as STRING
+  	DECLARE purchaseAmount, salesTax, total as FLOAT
+	DECLARE taxCode as INTEGER
+
+	PRINT(“Enter customer name: “, customerName)
+	GET customerName
+	PRINT("Enter purchase amount: ", purchaseAmount)
+	GET purchaseAmount
+	PRINT("Enter tax code: ", taxCode)
+	GET taxCode
+
+	IF taxCode == 0 THEN
+		salesTax = 0
+	ELSE IF taxCode == 1 THEN
+		salesTax = purchaseAmount * 0.03
+	ELSE IF taxCode == 2 THEN
+		salesTax = purchaseAmount * 0.05
+	ELSE IF taxCode == 3 THEN
+		salesTax = purchaseAmount * 0.07
+	ELSE
+		PRINT("Invalid tax code!")
+		THROW ERROR
+		BREAK
+	
+	total = purchaseAmount + salesTax
+	
+	PRINT("Customer Name: ", customerName)
+	PRINT("Purchase Amount: ", purchaseAmount)
+	PRINT("Sales Tax: ", salesTax)
+	PRINT("Total Due: ", total)
+END
+
+PROGRAM healthstatus
+BEGIN
+	DECLARE temperature as FLOAT
+
+	PRINT("Enter your temperature: ", temperature)
+	GET temperature
+	
+	IF temperature < 36.5 THEN PRINT("Body temperature too low! You might be sick and require consultation with a doctor!")
+	ELSE IF (temperature >= 36.5 and temperature <= 37.5) THEN PRINT("You are healthy!")
+	ELSE
+		PRINT("Body temperature too high! You might be sick and require consultation with a doctor!")
+END
+
+PROGRAM discount
+BEGIN
+	DECLARE purchaseAmount, finalBill as FLOAT
+	DECLARE customerName as STRING
+
+	PRINT("Enter your name: ", customerName)
+	GET customerName
+	PRINT("Enter purchase amount: ", purchaseAmount)
+	GET purchaseAmount
+
+	IF purchaseAmount >= 0 and purchaseAmount <= 100 THEN
+		finalBill = purchaseAmount * 0.98
+	ELSE IF purchaseAmount >= 101 and purchaseAmount <= 200 THEN
+		finalBill = purchaseAmount * 0.97
+	ELSE IF purchaseAmount >= 201 and purchaseAmount <= 300 THEN
+		finalBill = purchaseAmount * 0.96
+	ELSE
+		finalBill = purchaseAmount * 0.90
+	
+	PRINT("Customer Name: ", customerName)
+	PRINT("Purchase amount: ", purchaseAmount)
+	PRINT("Final Bill after discount: ", finalBill)
+END
