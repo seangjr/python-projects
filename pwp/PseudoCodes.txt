@@ -275,7 +275,7 @@ Program sum_numbers_1to10
 Begin
 	Declare sum, count as Integer
 	sum = 0
-	For count = 1, 11, STEP 1
+	For count From 1 To 10 STEP 1
 		sum = sum + count
 	Endfor
 	Print(sum)
@@ -285,7 +285,7 @@ Program sum_of_even_1to10
 Begin
 	Declare sum, count as Integer
 	sum = 0
-	For count = 0, 11, STEP 2
+	For count From 2 To 10 STEP 2
 		sum = sum + count
 	Endfor
 	Print(sum)
@@ -296,7 +296,7 @@ Begin
 	Declare evencount, oddcount as Integer
 	# even number
 	Print("Even numbers from 1 to 20")
-	For evencount = 0, 21, STEP 2
+	For evencount = 2, 21, STEP 2
 		Print(evencount)
 	Endfor
 	# odd number
@@ -313,9 +313,9 @@ Begin
 	Get number
 	# initialize product
 	product = 0
-	For count = 1, 11, STEP 1
-		sum = number * count
-		Print(number, " x ", count, " = ", sum)
+	For count From 1 To 10 STEP 1
+		product = number * count
+		Print(number, " x ", count, " = ", product)
 	Endfor
 End
 
@@ -324,12 +324,12 @@ Begin
 	Declare evencount, evensum, oddcount, oddsum as Integer
 	# initialize sum 
 	# even number
-	For evencount = 0, 21, STEP 2
+	For evencount From 0 To 20 STEP 2
 		evensum = evensum + evencount
 	Endfor
 	Print("Sum of all even numbers from 1 to 20 is ", evensum)
 	# odd number
-	For oddcount = 1, 21, STEP 2
+	For oddcount From 1 To 21 STEP 2
 		oddsum = oddsum + oddcount
 	Endfor
 	Print("Sum of all odd numbers from 1 to 20 is ", oddsum)
@@ -340,7 +340,7 @@ Begin
 	Declare number, count, factorial as Integer
 	factorial = 1
 	number = 3
-	For count = 1, number+1, STEP 1
+	For count From 2 To number+1 STEP 1
 		factorial = factorial * count
 	Endfor
 	Print("Factorial of ", number, " is ", factorial)
@@ -393,7 +393,7 @@ Begin
 	Endwhile
 
 	If num Equals reversed_num Then Print(num, " is a palindrome")
-	Else Print(num, " is a palindrome")
+	Else Print(num, " is not a palindrome")
 	Endif
 End
 
@@ -404,7 +404,6 @@ Begin
 	n1 = 0
 	n2 = 1
 	count = 0
-
 	Print("Fibonacci sequence:")
 	While count <= nterms Do
 		Print(n1)
@@ -421,7 +420,6 @@ Begin
 	num = 12
 	temp = num
 	sum = 0
-
 	While temp != 0 Do 
 		remainder = temp % 10
 		sum = sum + remainder
@@ -435,7 +433,7 @@ Program check_prime
 Begin
 	Declare num, n as Integer
 	If num > 1 Then
-		For n = 2, num Floor Divide 2, STEP 1
+		For n From 2 To num Floor Divide 2 STEP 1
 			If (num % n) == 0 Then
 				Print(num, " is not prime")
 				Break Loop
@@ -443,5 +441,548 @@ Begin
 		Endfor
 		Print(num, " is prime")
 	Else Print(num, " is neither prime nor composite")
+	Endif
 End 
+
+Program print_armstrong_100to999
+Begin
+	Declare num, sum, order, remainder, temp as Integer
+	sum = 0
+	order Equals Length Of num
+	temp = num
+	For num From 100 To 999 STEP 1
+		While temp > 0 Do
+			remainder = temp % 10
+			sum = sum + (remainder Exponent order)
+			temp = temp Floor Divide 10
+		Endwhile
+
+		If num Equals sum Then Print(num, " is an Armstrong number")
+		Endif
+	Endfor
+End
+
+Program check_armstrong_input
+Begin
+	Declare num, sum, order, remainder, temp as Integer
+	Print("Enter a number: ")
+	Get num
+	order Equals Length Of num
+	sum = 0
+	temp = num
+	While temp > 0 Do
+		remainder = temp % 10
+		sum = sum + (remainder Exponent order)
+		temp = temp Floor Divide 10
+	Endwhile
+
+	If num Equals sum Then Print(num, " is an Armstrong number") Else Print(num, " is not an Armstrong number")
+End
+
+Program print_palindrome_1to200
+Begin
+	Declare num, temp, reversed_num, remainder as Integer
+	For num From 1 To 200 STEP 1
+		temp = num
+		reversed_num = 0
+		While temp != 0 Do
+			remainder = temp % 10
+			reversed_num = reversed_num * 10 + remainder
+			temp = temp Floor Divide 10
+		Endwhile
+
+		If num Equals reversed_num Then Print(num, " is a palindrome")
+		Endif
+	Endfor
+End
+
+Program receive_input_number_largest
+Begin
+	Declare num, temp as Integer
+	Print("Enter a number: ")
+	Get num
+	temp = num
+	While num != 0 Do
+		Print("Enter a number: ")
+		Get num
+		If num > temp Then 
+			temp = num
+		Else
+			Break Loop
+		Endif
+	Endwhile
+	Print("Largest number is ", temp)
+End
+
+Program greatest_common_divisor
+Begin
+	Declare num1, num2, temp, gcd as Integer
+	num1 = 12
+	num2 = 18
+	temp = num1
+	While temp != 0 Do
+		If num1 Mod num2 == 0 Then
+			gcd = num2
+			Break Loop
+		Endif
+		temp = num2
+		num2 = num1 Mod num2
+		num1 = temp
+	Endwhile
+	Print("Greatest common divisor of ", num1, " and ", num2, " is ", gcd)
+End
+
+Program check_prime
+Begin
+	Declare num, n, remainder, sum as Integer
+	num = 3
+	sum = 0
+	temp = num
+	If num > 1 Then
+		For n From 2 To num Floor Divide 2 STEP 1
+			If (num % n) == 0 Then
+				Print(num, " is not prime")
+				#sum of digit
+				While temp != 0 Do
+					remainder = temp % 10
+					sum = sum + remainder
+					temp = temp Floor Divide 10
+				Endwhile
+				Print("Sum of digits in ", num, " is ", sum)
+				Break Loop
+			Endif
+		Endfor
+		Print(num, " is prime")
+		#find factorial
+		For n From 1 To num STEP 1
+			num = num * n
+		Endfor
+		Print("Factorial of ", num, " is ", num)
+	Else Print(num, " is neither prime nor composite")
+End
+
+Program check_armstrong
+Begin
+	Declare num, sum, order, remainder, temp as Integer
+	num = 407
+	order Equals Length Of num
+	sum = 0
+
+	temp = num
+	While temp > 0 Do
+		remainder = temp % 10
+		sum = sum + (remainder Exponent order)
+		temp = temp Floor Divide 10
+	Endwhile
+
+	If num Equals sum Then 
+		Print(num, " is an Armstrong number") 
+		# print reverse
+		temp = num
+		reversed_num = 0
+		While temp != 0 Do
+			remainder = temp % 10
+			reversed_num = reversed_num * 10 + remainder
+			temp = temp Floor Divide 10
+		Endwhile
+		Print("Reverse of ", num, " is ", reversed_num)
+	Else 
+		Print(num, " is not an Armstrong number")
+		# check palindrome
+		temp = num
+		reversed_num = 0
+		While temp != 0 Do
+			remainder = temp % 10
+			reversed_num = reversed_num * 10 + remainder
+			temp = temp Floor Divide 10
+		Endwhile
+		If num Equals reversed_num Then Print(num, " is a palindrome")
+	Endif
+End
+
+Program check_factorial
+Begin
+	Declare num, factorial as Integer
+	num = 5
+	factorial = 1
+	For i From 2 To num STEP 1
+		factorial = factorial * i
+	Endfor
+	If factorial > 500 Then
+		#sum of digit
+		temp = factorial
+		sum = 0
+		While temp != 0 Do
+			remainder = temp % 10
+			sum = sum + remainder
+			temp = temp Floor Divide 10
+		Endwhile
+		Print("Sum of digits in ", factorial, " is ", sum)
+	Else
+		# print reverse
+		temp = factorial
+		reversed_num = 0
+		While temp != 0 Do
+			remainder = temp % 10
+			reversed_num = reversed_num * 10 + remainder
+			temp = temp Floor Divide 10
+		Endwhile
+		Print("Reverse of ", factorial, " is ", reversed_num)
+End
+-*-
+* Lab2c
+Program 15inputs_temperature_conversion
+Begin
+	Declare f_temp, c_temp, temperature_count as Integer
+	Set temperature_count to 0
+
+	Dowhile temperature_count < 15
+		Print("Enter a temperature in Fahrenheit: ")
+		Get f_temp
+		c_temp = (f_temp - 32) * 5/9
+		Print(f_temp, " degrees Fahrenheit is ", c_temp, " degrees Celsius")
+		temperature_count = temperature_count + 1
+	Enddo
+	Print("All temperatures processed")
+End
+
+Program student_marks
+Begin
+	Declare a_marks, t_marks, e_marks as Integer
+	Print("Enter your assignment marks: ")
+	Get a_marks
+	If a_marks < 25 Then
+		Print("Redo the assignment")
+		Break
+	Else
+		Print("Enter your test marks: ")
+		Get t_marks
+		If t_marks < 25 Then
+			Print("Resit the test")
+		Else
+			Print("Enter your exam marks: ")
+			Get e_marks
+			If e_marks < 50 Then
+				Print("Resit the exam")
+			Else
+				Print("You have passed the module")
+End
+-*-
+* Lab 4
+Program accept10elements_list
+Begin
+	Declare element as Any Type
+	Declare list as Array[1 To 10] of Any Type
+	Declare i as Integer
+
+	list = []
+
+	For i From 1 To 10 STEP 1
+		Print("Enter element ", i, ": ")
+		Get element
+		list[i] = element
+	Endfor
+	Print("The list is: ", list)
+End
+
+Program enter_elements_list
+Begin
+	Declare element, i, j, sum as Integer
+	Declare list as Array[] of Integer
+	list = []
+	sum = 0
+	Print("Enter the number of elements: ")
+	Get i
+	For j From 1 To i STEP 1
+		Print("Enter element ", j, ": ")
+		Get element
+		list[j] = element
+		sum = sum + element	
+	Endfor
+	Print("The list is: ", list)
+	Print("The sum of elements is: ", sum)
+End
+
+Program read_numberofstudents_list
+Begin 
+	Declare i, students as Integer
+	Declare name as String
+	Declare list as Array[] of String
+
+	list = []
+
+	students = 5
+
+	For i From 1 To students STEP 1
+		Print("Enter name of student ", j, ": ")
+		Get name
+		list[j] = name
+	Endfor
+	Print("The list of students are: ", list)
+End
+
+Program read_numberofstudents_classtest
+Begin
+	Declare number_of_students, i, marks, sum, average as Integer
+	Declare list as Array[] of Integer 
+	number_of_students = 5
+	sum = 0
+	list = []
+
+	For i From 1 to Length of number_of_students STEP 1
+		Print("Enter marks of student ", i, ": ")
+		Get marks
+		list[i] = marks
+		sum = sum + marks
+	Endfor
+	average = sum / number_of_students
+	Print("The average of marks is: ", average)
+End
+
+Program check_number_in_list
+Begin
+	Declare number, i as Integer
+	Declare found as Boolean
+	Declare list as Array[1 To 5] of Integer
+
+	list = [65, 75, 85, 95, 105]
+	found = False
+
+	Print("Enter a number: ")
+	Get number
+	For i From 1 to Length of list STEP 1
+		If list[i] = number Then
+			found = True
+			Print("Number found")
+			Break
+		Else 
+			Print("Number not found")
+			Break
+		Endif
+	Endfor
+End
+
+Program student_grade
+Begin
+	Declare marks, total, average, subjects, i as Integer
+	Declare name, tpnumber, grade as String
+	Declare list as Array[] of Integer
+
+	list = []
+	total = 0
+	grade = ""
+
+	Print("Enter name of student: ")
+	Get name
+	Print("Enter TP number of student: ")
+	Get tpnumber
+	Print("Enter number of subjects: ")
+	Get subjects
+	For i From 1 To subjects STEP 1
+		Print("Enter marks of subject ", i, ": ")
+		Get marks
+		list[i] = marks
+		total = total + marks
+	Endfor
+	average = total / subjects
+
+	If average >= 80 Then
+		grade = "A+"
+	ElseIf average >= 75 and average < 80 Then
+		grade = "A"
+	ElseIf average >= 70 and average < 75 Then
+		grade = "B+"
+	ElseIf average >= 65 and average < 70 Then
+		grade = "B"
+	ElseIf average >= 60 and average < 65 Then
+		grade = "C+"
+	ElseIf average >= 55 and average < 60 Then
+		grade = "C"
+	ElseIf average >= 50 and average < 55 Then
+		grade = "D+"
+	Else
+		grade = "F"
+	Endif
+	Print("Name: ", name, " TP number: ", tpnumber, " Grade: ", grade)
+	Print("The total marks of student is: ", total)
+	Print("The average of marks is: ", average)
+End
+-*-
+* Lab 5
+Program accept_input_function
+Begin
+	Function get_input()
+		Declare num1, num2 as Integer
+		Print("Enter a number: ")
+		Get num1 
+		Print("Enter another number: ")
+		Get num2
+		Return num1 + num2
+	Endfunction
+	Declare sum as Integer
+	sum = get_input()
+	Print("Sum of two numbers is ", sum)
+End
+
+Program arithmetic_function
+Begin
+	Function add(num1, num2)
+		Return num1 + num2
+	Endfunction
+
+	Function sub(num1, num2)
+		Return num1 - num2
+	Endfunction
+
+	Function mul(num1, num2)
+		Return num1 * num2
+	Endfunction
+
+	Function div(num1, num2)
+		Return num1 / num2
+	Endfunction
+
+	Declare num1, num2, sum, sub, mul, div, option as Integer
+	Print("Enter 1st number: ")
+	Get num1
+	Print("Enter 2nd number: ")
+	Get num2
+	Print("Arithmetic Operations are: ")
+	Print("1. Addition")
+	Print("2. Subtraction")
+	Print("3. Multiplication")
+	Print("4. Division")
+	Print("Select your option: ")
+	Get option
+
+	If option == 1 Then
+		sum = add(num1, num2)
+		Print("Sum of two numbers is ", sum)
+	Elseif option == 2 Then
+		sub = sub(num1, num2)
+		Print("Difference of two numbers is ", sub)
+	Elseif option == 3 Then
+		mul = mul(num1, num2)
+		Print("Product of two numbers is ", mul)
+	Elseif option == 4 Then
+		div = div(num1, num2)
+		Print("Quotient of two numbers is ", div)
+	Else
+		Print("Invalid option")
+	Endif
+End
+
+Program check_number_in_list
+Begin
+	Declare num as Integer
+	Declare list as Array[1 To 5] of Integer
+	list = [65, 75, 85, 95, 105]
+	Function check_number(num, list)
+		Declare i as Integer
+		Declare found as Boolean
+		found = False
+		For i From 0 To Length Of list Step 1
+			If num Equals list[i] Then
+				found = True
+			Endif
+		Endfor
+		If found == True Then
+			Print(num, " is in the list")
+		Else
+			Print(num, " is not in the list")
+		Endif
+	Endfunction
+
+	Print("Enter a number: ")
+	Get num
+	check_number(num, list)
+End
+
+Program check_grade
+Begin
+	Declare marks as Array[] of Integer
+	marks = []
+
+	Function mark(subject_count)
+		Declare i as Integer
+		For i From 0 To subject_count Step 1
+			Print("Enter marks for subject ", i+1, ": ")
+			Get marks[i]
+		Endfor
+	Endfunction
+
+	Function average(marks)
+		Declare i, sum, avg as Integer
+		sum = 0
+		For i From 0 To Length Of marks Step 1
+			sum = sum + marks[i]
+		Endfor
+		avg = sum / Length Of marks
+		Return avg	
+	Endfunction
+
+	Function grade(marks)
+		Declare grade as String
+		If marks >= 80 Then
+			grade = "A+"
+		Elseif marks >= 75 and marks < 80 Then
+			grade = "A"
+		Elseif marks >= 70 and marks < 75 Then
+			grade = "B+"
+		Elseif marks >= 65 and marks < 70 Then
+			grade = "B"
+		Elseif marks >= 60 and marks < 65 Then
+			grade = "C+"
+		Elseif marks >= 55 and marks < 60 Then
+			grade = "C"
+		Elseif marks >= 50 and marks < 55 Then
+			grade = "C-"
+		Elseif marks < 50 Then
+			grade = "F"
+		Else
+			grade = "Invalid"
+		Endif
+		Return grade
+	Endfunction
+
+	Function display(avg, grade)
+		Declare i, sum as Integer
+		sum = 0
+		For i From 0 to Length of marks Step 1
+			sum = sum + marks[i]
+		Endfor
+		Print("Total of all Subjects: ", sum)
+		Print("Average of Semester: ", avg)
+		Print("Grade of Semester: ", grade)
+	Endfunction
+
+	Function main()
+		Declare subject_count, avg, grade, choice, action as Integer
+		Declare name, tpnumber as String
+		Print("Do you want to continue? '0' to Continue, '-1' to Terminate: ")
+		Get choice
+		While choice != -1
+			Print("Your options are: ")
+			Print("1. Add new student detail")
+			Print("2. View all student details")
+			Print("3. Search specific student detail")
+			Get	action 
+
+			If action == 1 Then
+				Print("Enter student name: ")
+				Get name
+				Print("Enter", name,"'s TP number: ")
+				Get tpnumber
+				Print("Enter number of subjects this semester: ")
+				Get subject_count
+				mark(subject_count)
+				avg = average(marks)
+				grade = grade(avg)
+				display(avg, grade)
+	Endfunction
+
+	Call main()
+End
+
+
 -*-
