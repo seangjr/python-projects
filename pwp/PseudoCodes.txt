@@ -672,12 +672,12 @@ End
 Program accept10elements_list
 Begin
 	Declare element as Any Type
-	Declare list as Array[1 To 10] of Any Type
+	Declare list as Array[0 To 9] of Any Type
 	Declare i as Integer
 
 	list = []
 
-	For i From 1 To 10 STEP 1
+	For i From 0 To 9 STEP 1
 		Print("Enter element ", i, ": ")
 		Get element
 		list[i] = element
@@ -693,7 +693,7 @@ Begin
 	sum = 0
 	Print("Enter the number of elements: ")
 	Get i
-	For j From 1 To i STEP 1
+	For j From 0 To i-1 STEP 1
 		Print("Enter element ", j, ": ")
 		Get element
 		list[j] = element
@@ -713,10 +713,10 @@ Begin
 
 	students = 5
 
-	For i From 1 To students STEP 1
-		Print("Enter name of student ", j, ": ")
+	For i From 0 To students-1 STEP 1
+		Print("Enter name of student ", i, ": ")
 		Get name
-		list[j] = name
+		list[i] = name
 	Endfor
 	Print("The list of students are: ", list)
 End
@@ -729,8 +729,8 @@ Begin
 	sum = 0
 	list = []
 
-	For i From 1 to Length of number_of_students STEP 1
-		Print("Enter marks of student ", i, ": ")
+	For i From 0 to Length of number_of_students-1 STEP 1
+		Print("Enter marks of student ", i+1, ": ")
 		Get marks
 		list[i] = marks
 		sum = sum + marks
@@ -750,16 +750,15 @@ Begin
 
 	Print("Enter a number: ")
 	Get number
-	For i From 1 to Length of list STEP 1
-		If list[i] = number Then
+	For i From 0 to Length of list-1 STEP 1
+		If list[i] Equals number Then
 			found = True
-			Print("Number found")
-			Break
 		Else 
-			Print("Number not found")
-			Break
+			found = False
 		Endif
 	Endfor
+	If found Equals True Then Print("The number is found in the list")
+	Else Print("The number is not found in the list")
 End
 
 Program student_grade
@@ -778,7 +777,7 @@ Begin
 	Get tpnumber
 	Print("Enter number of subjects: ")
 	Get subjects
-	For i From 1 To subjects STEP 1
+	For i From 0 To subjects-1 STEP 1
 		Print("Enter marks of subject ", i, ": ")
 		Get marks
 		list[i] = marks
@@ -808,13 +807,152 @@ Begin
 	Print("The average of marks is: ", average)
 End
 -*-
+* Lab 4 fn
+Program sum_2numbers
+Begin 
+	Declare num1, num2 as Integer
+	Function sumNum(x, y)
+		Declare x, y as Integer
+		return x + y
+	Endfunction
+	Print("Enter first number: ")
+	Get num1
+	Print("Enter second number: ")
+	Get num2
+	Print("The sum of ", num1, " and ", num2, " is ", sumNum(num1, num2))
+End
+
+Program difference_2numbers
+Begin
+	Declare num1, num2 as Integer
+	Function difference(x, y)
+		Declare x, y as Integer
+		return x - y
+	Endfunction
+	Print("Enter first number: ")
+	Get num1
+	Print("Enter second number: ")
+	Get num2
+	Print("The difference of ", num1, " and ", num2, " is ", difference(num1, num2))
+End
+
+Program average_3numbers
+Begin
+	Declare num1, num2, num3 as Integer
+	Function average(x, y, z)
+		Declare x, y, z as Integer
+		return (x + y + z) / 3
+	Endfunction
+	Print("Enter first number: ")
+	Get num1
+	Print("Enter second number: ")
+	Get num2
+	Print("Enter third number: ")
+	Get num3
+	Print("The average of ", num1, ", ", num2, " and ", num3, " is ", average(num1, num2, num3))
+End
+
+Program arithmetic_function
+Begin
+	Function add(num1, num2)
+		Declare num1, num2 as Integer
+		Return num1 + num2
+	Endfunction
+
+	Function sub(num1, num2)
+		Declare num1, num2 as Integer
+		Return num1 - num2
+	Endfunction
+
+	Function mul(num1, num2)
+		Declare num1, num2 as Integer
+		Return num1 * num2
+	Endfunction
+
+	Function div(num1, num2)
+		Declare num1, num2 as Integer
+		Return num1 / num2
+	Endfunction
+
+	Declare num1, num2, sum, sub, mul, div, option as Integer
+	Print("Enter 1st number: ")
+	Get num1
+	Print("Enter 2nd number: ")
+	Get num2
+	Print("Arithmetic Operations are: ")
+	Print("1. Addition")
+	Print("2. Subtraction")
+	Print("3. Multiplication")
+	Print("4. Division")
+	Print("Select your option: ")
+	Get option
+
+	If option == 1 Then
+		sum = add(num1, num2)
+		Print("Sum of two numbers is ", sum)
+	Elseif option == 2 Then
+		sub = sub(num1, num2)
+		Print("Difference of two numbers is ", sub)
+	Elseif option == 3 Then
+		mul = mul(num1, num2)
+		Print("Product of two numbers is ", mul)
+	Elseif option == 4 Then
+		div = div(num1, num2)
+		Print("Quotient of two numbers is ", div)
+	Else
+		Print("Invalid option")
+	Endif
+End
+
+Program circle_function
+Begin
+	Declare radius as Float
+
+	Function area(r)
+		Declare r as Float
+		Return 3.14159 * r * r
+	Endfunction
+
+	Function circumference(r)
+		Declare r as Float
+		Return 2 * 3.14159 * r
+	Endfunction
+
+	Function menu()
+		Declare option as Integer
+		Print("1. Area")
+		Print("2. Circumference")
+		Print("3. Exit")
+		Print("Select your option: ")
+		Get option
+		
+		If option == 1 Then
+			Print("Enter radius: ")
+			Get radius
+			Print("Area of circle is ", area(radius))
+			Call menu()
+		Elseif option == 2 Then
+			Print("Enter radius: ")
+			Get radius
+			Print("Circumference of circle is ", circumference(radius))
+			Call menu()
+		Elseif option == 3 Then
+			Print("Exiting...")
+		Else
+			Print("Invalid option")
+			Call menu()
+	Endfunction
+
+	menu()
+End
+-*-
 * Lab 5
 Program accept_input_function
 Begin
 	Function get_input()
 		Declare num1, num2 as Integer
 		Print("Enter a number: ")
-		Get num1 
+		Get num1
 		Print("Enter another number: ")
 		Get num2
 		Return num1 + num2
@@ -827,18 +965,22 @@ End
 Program arithmetic_function
 Begin
 	Function add(num1, num2)
+		Declare num1, num2 as Integer
 		Return num1 + num2
 	Endfunction
 
 	Function sub(num1, num2)
+		Declare num1, num2 as Integer
 		Return num1 - num2
 	Endfunction
 
 	Function mul(num1, num2)
+		Declare num1, num2 as Integer
 		Return num1 * num2
 	Endfunction
 
 	Function div(num1, num2)
+		Declare num1, num2 as Integer
 		Return num1 / num2
 	Endfunction
 
@@ -878,7 +1020,8 @@ Begin
 	Declare list as Array[1 To 5] of Integer
 	list = [65, 75, 85, 95, 105]
 	Function check_number(num, list)
-		Declare i as Integer
+		Declare i, num as Integer
+		Declare list as Array[] of Integer
 		Declare found as Boolean
 		found = False
 		For i From 0 To Length Of list Step 1
@@ -905,7 +1048,7 @@ Begin
 
 	Function mark(subject_count)
 		Declare i as Integer
-		For i From 0 To subject_count Step 1
+		For i From 0 To subject_count-1 Step 1
 			Print("Enter marks for subject ", i+1, ": ")
 			Get marks[i]
 		Endfor
@@ -914,7 +1057,7 @@ Begin
 	Function average(marks)
 		Declare i, sum, avg as Integer
 		sum = 0
-		For i From 0 To Length Of marks Step 1
+		For i From 0 To Length Of marks-1 Step 1
 			sum = sum + marks[i]
 		Endfor
 		avg = sum / Length Of marks
@@ -937,10 +1080,8 @@ Begin
 			grade = "C"
 		Elseif marks >= 50 and marks < 55 Then
 			grade = "C-"
-		Elseif marks < 50 Then
-			grade = "F"
 		Else
-			grade = "Invalid"
+			grade = "F"
 		Endif
 		Return grade
 	Endfunction
@@ -948,7 +1089,7 @@ Begin
 	Function display(avg, grade)
 		Declare i, sum as Integer
 		sum = 0
-		For i From 0 to Length of marks Step 1
+		For i From 0 to Length of marks-1 Step 1
 			sum = sum + marks[i]
 		Endfor
 		Print("Total of all Subjects: ", sum)
@@ -979,6 +1120,8 @@ Begin
 				avg = average(marks)
 				grade = grade(avg)
 				display(avg, grade)
+			Print("Do you want to continue? '0' to Continue, '-1' to Terminate: ")
+			Get choice
 	Endfunction
 
 	Call main()
