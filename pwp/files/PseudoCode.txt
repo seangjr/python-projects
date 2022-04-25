@@ -1,9 +1,42 @@
 # Q1
 Program flight_schedules
-Begin 
-    
+Begin
+    Declare data as array of string
+    Declare i as integer
+    Declare line as string
+
+    Function collectInformation()
+        Declare flightInformation as array of string
+        Declare departureAirport, arrivalAirport, departureTime, arrivalTime as string
+        flightInformation = []
+        Declare flightList as array of string
+        Declare i as integer
+
+        For i From 0 To 5 Step 1
+            print("Enter flight information for flight #", i + 1)
+            print("Departure Airport: ")
+            Get departureAirport
+            print("Arrival Airport: ")
+            Get arrivalAirport
+            print("Departure Time: ")
+            Get departureTime
+            print("Arrival Time: ")
+            Get arrivalTime
+            flightList = [departureAirport, arrivalAirport, departureTime, arrivalTime]
+            Append flightList to flightInformation
+        Endfor
+        Return flightInformation
+    Endfunction
+
+    data = collectInformation()
+    Open file "flight_schedules.txt" with write access
+        For i From 0 To Length of data Step 1
+            line = data[i]
+            Strip line of brackets and quotes
+            Write line to file
+        Endfor
+    Close file
 End
-departure city 
-arrival city
-departure time
-arrival time
+
+#Q2
+Program
